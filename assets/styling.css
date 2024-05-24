@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+}
+
+.tableText{
+    font-weight: bold;
+    text-align: left;
+}
+
+.tableNum{
+    text-align: right;
+}
+
+.tableNumSec{
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+.tableNumLast{
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+}
+
+.tableNumAmort{
+    text-align: right;
+    border-radius: 10px;
+}
+
+.mainTitle, .subTitle{
+    font-weight: bold;
+}
+
+.mainTitle{
+    font-size: 40px;
+}
+
+.subTitle{
+    font-size: 30px;
+}
+
+.DDtext{
+    color: lightblue;
+    font-weight:bold;
+    font-size: medium;
+}
+
+.ddbig{
+    minWidth: 100px;
+    height: 50px;
+}
+
+.ddsmall{
+    minWidth: 200px;
+    height: 50px;
+}
+
+.row1Div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 150px;
+}
+
+.row1DD {
+    min-width: 80px;
+}
+
+.row1Col {
+    padding-bottom: 20px;
+}
+
+.row2Div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 470px;
+    padding-bottom: 20px;
+}
+
+.row2Col {
+    padding-bottom: 20px;
+}
+
+.row2pie {
+    min-width: 80px;
+    max-width: 200px;
+}
+
+.graphText{
+    color: lightblue;
+    font-weight:bold;
+    text-align: center;
+    font-size: larger;
+}
+
+.pieDiv{
+    align-content: center;
+}
+
+.topTab{
+    margin-bottom: 50px;
+}
+
+table, tr, td, th{
+    border: none;
+}
+
+
