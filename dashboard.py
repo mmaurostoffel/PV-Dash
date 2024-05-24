@@ -4,19 +4,27 @@ import dash_bootstrap_components as dbc
 from datetime import datetime, timedelta
 
 from fetchData import getBaseData, getBatteryData, generateBatData
-from generateDiagramms import grossVerbraucher2, überproduktion, batterie, PVErzeugung_Verbrauch2, generateCenterTable1, \
-    generateCenterTable2
+from generateDiagramms import grossVerbraucher, überproduktion, batterie, PVErzeugung_Verbrauch, generateCenterTable1, generateCenterTable2
 
 
 def getCutOffDate(date):
+    '''
+    Get datetime Object from numDateDropdownList according to date (String) Input
+    '''
     index = [idx for idx, s in enumerate(dateDropdownList) if date in s]
     return numDateDropdownList[index[0]]
 
 def getBatLimit(bat):
+    '''
+    Get numerical bat Capacity from batMax List according to bat (BatteryName) Input
+    '''
     index = [idx for idx, s in enumerate(batterieDropdownList) if bat in s]
     return batMax[index[0]]
 
 def getBatPrice(bat):
+    '''
+    Get numerical bat Price from batMax List according to bat (BatteryName) Input
+    '''
     index = [idx for idx, s in enumerate(batterieDropdownList) if bat in s]
     return batPrice[index[0]]
 
@@ -24,6 +32,7 @@ def getBatPrice(bat):
 #Generate Battery Data (fetchData)
 batCaption, batMax, batPrice = getBatteryData()
 
+#Generate Dropdown Lists
 dateDropdownList = ["alle Daten", "letzte Woche", "letzter Monat", "letztes Halbjahr", "letztes Jahr"]
 numDateDropdownList = [datetime(1999, 1, 1), datetime.today() - timedelta(days=7), datetime.today() - timedelta(days=30), datetime.today() - timedelta(days=180), datetime.today() - timedelta(days=365)]
 batterieDropdownList = batCaption
@@ -31,7 +40,10 @@ batterieEffDropdownList = list(range(0, 101, 5))
 strPrDropdownList = np.arange(0.05, 2.5, 0.05).round(2)
 strVerDropdownList = np.arange(0.05, 2.5, 0.05).round(2)
 
+#Get Main Data according to default Dropdown selection
 main_data = getBaseData(batMax, batterieEffDropdownList)
+
+
 
 #Create App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -143,7 +155,7 @@ app.layout = html.Div(
                             dbc.Row([
                                 dbc.Col(html.Div([
                                     html.Div('PV-Erzeugung und Verbrauch', className='graphText'),
-                                    dcc.Graph(id="pve", figure=PVErzeugung_Verbrauch2(main_data), className='row2graph')
+                                    dcc.Graph(id="pve", figure=PVErzeugung_Verbrauch(main_data), className='row2graph')
                                 ])),
                             ])
                         ]
@@ -170,7 +182,7 @@ app.layout = html.Div(
                             dbc.Row([
                                 dbc.Col(html.Div([
                                     html.H4('Grossverbraucher und Batterie-Auslastung', className='graphText'),
-                                    dcc.Graph(id="grossV", figure=grossVerbraucher2(main_data))
+                                    dcc.Graph(id="grossV", figure=grossVerbraucher(main_data))
                                 ])),
 
                             ])
@@ -205,7 +217,7 @@ def update_graphs_withBattery(date, batType, batEff, StrPr, StrVerg):
     json_data = main_data[mask]
 
 
-    figureGV = grossVerbraucher2(json_data)
+    figureGV = grossVerbraucher(json_data)
     figureGV.update_layout()
 
     figureBat = batterie(json_data, getBatLimit(batType))
@@ -227,7 +239,7 @@ def update_graphs_noBattery(date):
     mask = (main_data['realDatum'] > getCutOffDate(date))
     json_data = main_data[mask]
 
-    figurePVE = PVErzeugung_Verbrauch2(json_data)
+    figurePVE = PVErzeugung_Verbrauch(json_data)
     figurePVE.update_layout()
 
     figureÜber = überproduktion(json_data)

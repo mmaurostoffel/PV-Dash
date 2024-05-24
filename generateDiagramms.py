@@ -2,7 +2,10 @@ from dash import html
 from plotly import graph_objects as go, express as px
 
 
-def grossVerbraucher2(json_data):
+def grossVerbraucher(json_data):
+    '''
+    Generate the big diagramm at the bottom of the page
+    '''
     fig = go.Figure()
     #tozeroy
     #tonexty
@@ -23,6 +26,9 @@ def grossVerbraucher2(json_data):
 
 
 def überproduktion(json_data):
+    '''
+    Generate the first pie Chart for the power consumption diagram.
+    '''
     color = ['red', 'blue']
     legend = ['Tage mit Überproduktion', 'Tage ohne Überproduktion']
     fig = px.pie(json_data.groupby(by=["Produktion"]).count(), values='PVErtrag', names=legend, color= color)
@@ -41,6 +47,9 @@ def überproduktion(json_data):
 
 
 def batterie(json_data, threshold):
+    '''
+    Generate the second pie Chart for the battery usage
+    '''
     x = json_data.groupby(by='realDatumOnlyDate').max()
     y = x.groupby(by='batData').count()['Datum']
     numOfFullDays = 0
@@ -66,7 +75,10 @@ def batterie(json_data, threshold):
     return fig
 
 
-def PVErzeugung_Verbrauch2(json_data):
+def PVErzeugung_Verbrauch(json_data):
+    '''
+    Generate the area Plot for the PV-Ertrag and Verbrauch
+    '''
     fig = go.Figure()
     fig.add_trace(go.Scatter(name="Erzeugung", x=json_data['Datum'], y=json_data['Sum Erzeugung'], fill='tozeroy', mode='none'))
     fig.add_trace(go.Scatter(name="Verbrauch", x=json_data['Datum'], y=json_data['Sum Verbrauch'], fill='tozeroy', mode='none'))
@@ -83,6 +95,9 @@ def PVErzeugung_Verbrauch2(json_data):
 
 
 def generateCenterTable1(json_data, StrVerg, StrPr, BatPrice):
+    '''
+    Generate the first part of the center table (gesparte Energie, Verguetung, Einsparung, Finanzieller Erfolg)
+    '''
     gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice)
 
     text = round(gesEn,1),' kWh'
@@ -114,6 +129,9 @@ def generateCenterTable1(json_data, StrVerg, StrPr, BatPrice):
 
 
 def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice):
+    '''
+    Generate the second part of the center table (Anschaffungskosten und Amortisation)
+    '''
     gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice)
 
     if Amort < 10:
@@ -139,6 +157,9 @@ def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice):
 
 
 def generateCenterData(json_data, StrVerg, StrPr, BatPrice):
+    '''
+    Calculate the Data for the center table
+    '''
     #TODO Berechnung aus BatData
     gesEn = 1136 #kWh
 

@@ -3,6 +3,9 @@ import pandas as pd
 
 
 def getBaseData(batMax, batterieEffDropdownList):
+    '''
+    Receive Main Data from API and generate additional Lines for better Handling
+    '''
     url = "https://iten-web.ch/batteriespeicher/api/data_as_json.php"
     main_data = pd.read_json(url)
 
@@ -25,6 +28,9 @@ def getBaseData(batMax, batterieEffDropdownList):
 
 
 def getBatteryData():
+    '''
+    Receive Battery Data from API and reformat into the 3 lists batCaption, batMax, batPrice
+    '''
     batCaption = []
     batMax = []
     batPrice = []
@@ -51,7 +57,9 @@ def getBatteryData():
 
 
 def generateBatData(json_data, batLimit, batEff):
-    #json_data.insert(1, "batteryNoCap", json_data['Netz'].cumsum(), False)
+    '''
+    Generate the battery data from the given parameters and filtered json_data
+    '''
     lastVal = 0
     batData = []
     for val in json_data['Netz']:
@@ -66,5 +74,4 @@ def generateBatData(json_data, batLimit, batEff):
             curr = 0
         lastVal = curr
         batData.append(np.round(curr, 2))
-    #print(batData)
     return batData
