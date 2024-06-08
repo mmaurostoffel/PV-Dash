@@ -93,7 +93,7 @@ app.layout = html.Div(
                                 ], className='ddsmall'), className='row1Col', width=12, lg=1),
                                 dbc.Col(html.Div([
                                     html.Div('Stromvergütung', className='DDtext'),
-                                    dcc.Dropdown(strVerDropdownList, strVerDropdownList[3], id='StrVerg-dropdown', clearable=False, className='row1DD' )
+                                    dcc.Dropdown(strVerDropdownList, strVerDropdownList[14], id='StrVerg-dropdown', clearable=False, className='row1DD' )
                                 ], className='ddsmall'), className='row1Col', width=12, lg=1),
                             ])
                         ]
@@ -136,9 +136,9 @@ app.layout = html.Div(
                             dbc.Row([
                                 dbc.Col(html.Div([
                                     dbc.Table(
-                                        generateCenterTable1(main_data, strVerDropdownList[3], strPrDropdownList[16], getBatPrice(batterieDropdownList[0])), id='topTab', className='topTab'),
+                                        generateCenterTable1(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), id='topTab', className='topTab'),
                                     dbc.Table(
-                                        generateCenterTable2(main_data, strVerDropdownList[3], strPrDropdownList[16], getBatPrice(batterieDropdownList[0])), id='botTab')
+                                        generateCenterTable2(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), id='botTab')
                                 ])),
                             ])
                         ]
@@ -223,8 +223,8 @@ def update_graphs_withBattery(date, batType, batEff, StrPr, StrVerg):
     figureBat = batterie(json_data, getBatLimit(batType))
     figureBat.update_layout()
 
-    topTable = generateCenterTable1(json_data, StrVerg, StrPr, getBatPrice(batType))
-    botTable = generateCenterTable2(json_data, StrVerg, StrPr, getBatPrice(batType))
+    topTable = generateCenterTable1(json_data, StrVerg, StrPr, getBatPrice(batType), batEff, getBatLimit(batType))
+    botTable = generateCenterTable2(json_data, StrVerg, StrPr, getBatPrice(batType), batEff, getBatLimit(batType))
 
     return figureGV, figureBat, topTable, botTable
 

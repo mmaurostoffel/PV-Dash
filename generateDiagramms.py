@@ -1,5 +1,6 @@
 from dash import html
 from plotly import graph_objects as go, express as px
+import pandas as pd
 
 
 def grossVerbraucher(json_data):
@@ -94,11 +95,11 @@ def PVErzeugung_Verbrauch(json_data):
     return fig
 
 
-def generateCenterTable1(json_data, StrVerg, StrPr, BatPrice):
+def generateCenterTable1(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     '''
     Generate the first part of the center table (gesparte Energie, Verguetung, Einsparung, Finanzieller Erfolg)
     '''
-    gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice)
+    gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit)
 
     text = round(gesEn,1),' kWh'
     row1 = html.Tr([
@@ -128,11 +129,11 @@ def generateCenterTable1(json_data, StrVerg, StrPr, BatPrice):
     return table_body
 
 
-def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice):
+def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     '''
     Generate the second part of the center table (Anschaffungskosten und Amortisation)
     '''
-    gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice)
+    gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit)
 
     if Amort < 10:
         col = 'greenyellow'
@@ -156,12 +157,15 @@ def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice):
     return table_body
 
 
-def generateCenterData(json_data, StrVerg, StrPr, BatPrice):
+def generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     '''
     Calculate the Data for the center table
     '''
-    #TODO Berechnung aus BatData
-    gesEn = 1136 #kWh
+
+    #fetch Data from API
+    url = 'https://iten-web.ch/batteriespeicher/api/batteries/'+str(batLimit)+'/'+str(batEff*100)
+    batData = pd.read_json(url)
+    gesEn = batData.iloc[0, 0] / 1000
 
     Verg = gesEn * StrVerg *-1
 
