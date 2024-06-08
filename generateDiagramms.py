@@ -82,7 +82,7 @@ def PVErzeugung_Verbrauch(json_data):
     '''
     fig = go.Figure()
     fig.add_trace(go.Scatter(name="Erzeugung", x=json_data['Datum'], y=json_data['Sum Erzeugung'], fill='tozeroy', mode='none'))
-    fig.add_trace(go.Scatter(name="Verbrauch", x=json_data['Datum'], y=json_data['Sum Verbrauch'], fill='tozeroy', mode='none'))
+    fig.add_trace(go.Scatter(name="Verbrauch", x=json_data['Datum'], y=json_data['Sum Verbrauch'], fill='tonexty', mode='none'))
     #fig = px.area(json_data, x='Datum', y=['Sum Erzeugung', 'Sum Verbrauch'])
     fig.update_layout(legend=dict(
         orientation="h",
