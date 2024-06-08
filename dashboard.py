@@ -1,4 +1,4 @@
-from dash import Dash, dcc, html, Input, Output, callback
+from dash import Dash, dcc, html, Input, Output, callback, State
 import numpy as np
 import dash_bootstrap_components as dbc
 from datetime import datetime, timedelta
@@ -44,10 +44,32 @@ strVerDropdownList = np.arange(0.05, 2.5, 0.05).round(2)
 main_data = getBaseData(batMax, batterieEffDropdownList)
 
 
-
 #Create App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.css.append_css({'external_url': '/assets/styling.css'})
+
+modalString1 = "Das Dashboard wurde im Rahmen des Moduls und «Dashboard Design» an der FHGR erstellt. Die Autoren sind Mauro Stoffel und Marc-Alexander Iten."
+modalString2 = "Sämtliche verwendete Daten wurden durch das Monitoring System von Herr Itens Photovoltaik Anlage aufgezeichnet und über eine selbst entwicklete API zur Verfügung gestellt."
+
+modalButton = html.Div(
+    [
+        dbc.Button("Impressum und Quellen", id="open", n_clicks=0),
+        dbc.Modal(
+            [
+                dbc.ModalHeader(dbc.ModalTitle("Impressum und Quellen")),
+                dbc.ModalBody([html.Div(modalString1), html.Div(modalString2)]),
+                dbc.ModalFooter(
+                    dbc.Button(
+                        "Close", id="close", className="ms-auto", n_clicks=0
+                    )
+                ),
+            ],
+            id="modal",
+            is_open=False,
+        ),
+    ]
+)
+
 
 app.layout = html.Div(
     ################################################################
@@ -64,7 +86,7 @@ app.layout = html.Div(
                         children=[
                             dbc.Row([
                                 html.Div("Batteriespeicher", className='mainTitle'),
-                                html.Div("Wirtschaftlichkeitsberechnung", className='subTitle'),
+                                html.Div("Wirtschaftlichkeitsberechnung", className='subTitle')
                             ])
                         ]
                     ),
@@ -95,7 +117,15 @@ app.layout = html.Div(
                                     html.Div('Stromvergütung', className='DDtext'),
                                     dcc.Dropdown(strVerDropdownList, strVerDropdownList[14], id='StrVerg-dropdown', clearable=False, className='row1DD' )
                                 ], className='ddsmall'), className='row1Col', width=12, lg=1),
-                            ])
+                            ]),
+                            dbc.Row([
+                                dbc.Col(html.Div([
+                                    #empty
+                                ]), width=12, lg=10),
+                                dbc.Col(html.Div([
+                                    modalButton
+                                ]), width=3, lg=2),
+                            ]),
                         ]
                     ),
                     xs=12, sm=12, md=12, lg=12, xl=12, xxl=8,
@@ -194,6 +224,18 @@ app.layout = html.Div(
         )
     ]
 )
+
+
+@app.callback(
+    Output("modal", "is_open"),
+    [Input("open", "n_clicks"),
+     Input("close", "n_clicks")],
+    [State("modal", "is_open")],
+    )
+def toggle_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
 
 @callback(
     Output("grossV", "figure"),
