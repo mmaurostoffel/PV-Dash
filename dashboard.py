@@ -100,35 +100,41 @@ app.layout = html.Div(
                                 dbc.Col(html.Div([
                                     html.Div('Zeitraum', className='DDtext'),
                                     dcc.Dropdown(dateDropdownList, dateDropdownList[0], id='zeitraum-dropdown', clearable=False, className='row1DD')
-                                ], className='ddbig'), className='row1Col', width=12, lg=3),
+                                ], className='ddbig'), className='row1Col', width=12, lg=6),
                                 dbc.Col(html.Div([
                                     html.Div('Batterie', className='DDtext'),
                                     dcc.Dropdown(batterieDropdownList, batterieDropdownList[0], id='Batterie-dropdown', clearable=False, className='row1DD')
-                                ], className='ddbig'), className='row1Col', width=12, lg=3),
-                                dbc.Col(html.Div([
-                                    html.Div('Batterie Effizienz in [%]', className='DDtext'),
-                                    dcc.Dropdown(batterieEffDropdownList, batterieEffDropdownList[-3], id='batEff-dropdown', clearable=False, className='row1DD')
-                                ], className='ddbig'), className='row1Col', width=12, lg=3),
-                                dbc.Col(html.Div([
-                                    html.Div('Strompreis', className='DDtext'),
-                                    dcc.Dropdown(strPrDropdownList, strPrDropdownList[16], id='StrPr-dropdown', clearable=False, className='row1DD' )
-                                ], className='ddsmall'), className='row1Col', width=12, lg=1),
-                                dbc.Col(html.Div([
-                                    html.Div('Stromvergütung', className='DDtext'),
-                                    dcc.Dropdown(strVerDropdownList, strVerDropdownList[14], id='StrVerg-dropdown', clearable=False, className='row1DD' )
-                                ], className='ddsmall'), className='row1Col', width=12, lg=1),
+                                ], className='ddbig'), className='row1Col', width=12, lg=6),
                             ]),
                             dbc.Row([
                                 dbc.Col(html.Div([
-                                    #empty
-                                ]), width=12, lg=10),
+                                    html.Div('Batterie Effizienz in [%]', className='DDtext'),
+                                    dcc.Dropdown(batterieEffDropdownList, batterieEffDropdownList[-3],
+                                                 id='batEff-dropdown', clearable=False, className='row1DD')
+                                ], className='ddbig'), className='row1Col', width=12, lg=6),
                                 dbc.Col(html.Div([
-                                    modalButton
-                                ]), width=3, lg=2),
+                                    html.Div('Strompreis', className='DDtext'),
+                                    dcc.Dropdown(strPrDropdownList, strPrDropdownList[16], id='StrPr-dropdown',
+                                                 clearable=False, className='row1DD')
+                                ], className='ddsmall'), className='row1Col', width=12, lg=3),
+                                dbc.Col(html.Div([
+                                    html.Div('Stromvergütung', className='DDtext'),
+                                    dcc.Dropdown(strVerDropdownList, strVerDropdownList[14], id='StrVerg-dropdown',
+                                                 clearable=False, className='row1DD')
+                                ], className='ddsmall'), className='row1Col', width=12, lg=3),
                             ]),
                         ]
                     ),
-                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=8,
+                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=7,
+                ),
+                dbc.Col(
+                    html.Div(
+                        className='row1Div',
+                        children=[
+                            modalButton
+                        ]
+                    ), align="center",
+                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=1,
                 )
             ]
         ),
