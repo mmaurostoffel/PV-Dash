@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 from datetime import datetime, timedelta
 
 from fetchData import getBaseData, getBatteryData, generateBatData
-from generateDiagramms import grossVerbraucher, überproduktion, batterie, PVErzeugung_Verbrauch, generateCenterTable1, generateCenterTable2
+from generateDiagramms import grossVerbraucher, batterieAnalyse, PVErzeugung_Verbrauch, generateCenterTable1, generateCenterTable2
 
 
 def getCutOffDate(date):
@@ -141,93 +141,87 @@ app.layout = html.Div(
     ################################################################
     # Second Row
     ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    html.Div(
-                        className='row2Div',
-                        style={'minWidth': '525px'},
-                        children=[
-                            dbc.Row([
-                                dbc.Col(html.Div([
-                                    html.Div('Tage mit Überproduktion', className='graphText'),
-                                    dcc.Graph(id="üprod", figure=überproduktion(main_data), className='row2pie')
-                                ], className= 'pieDiv')),
-                                dbc.Col(html.Div([
-                                    html.Div('Batterie Auslastung', className='graphText'),
-                                    dcc.Graph(id="bat", figure=batterie(main_data, batMax[0]), className='row2pie'),
-                                ], className= 'pieDiv'))
-                            ])
-                        ]
-                    ),
-                    xs=12, sm=12, md=12, lg=12, xl=8, xxl=4,
-                ),
+        dcc.Tabs([
+            dcc.Tab(label='Übersicht und Ammortisationsrechnung', className='tab_style', selected_className='tab_style--selected', children=[
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            html.Div(
+                                className='row2Div',
+                                style={'minWidth': '525px'},
+                                children=[
+                                    dbc.Row([
+                                        dbc.Col(html.Div([
+                                            html.Div('Batterieanalyse', className='graphText'),
+                                            dcc.Graph(id="bat", figure=batterieAnalyse(main_data, batMax[0]), className='row2bat')
+                                        ], className= 'batDiv')),
+                                    ])
+                                ]
+                            ),
+                            xs=12, sm=12, md=12, lg=12, xl=8, xxl=4,
+                        ),
 
-                dbc.Col(
-                    html.Div(
-                        className='row2Div',
-                        style={
-                            'minWidth': '250px'},
-                        children=[
-                            dbc.Row([
-                                dbc.Col(html.Div([
-                                    dbc.Table(
-                                        generateCenterTable1(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), id='topTab', className='topTab'),
-                                    dbc.Table(
-                                        generateCenterTable2(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), id='botTab')
-                                ])),
-                            ])
-                        ]
-                    ),
-                    xs=12, sm=12, md=12, lg=12, xl=4, xxl=2,
-                ),
+                        dbc.Col(
+                            html.Div(
+                                className='row2Div',
+                                style={
+                                    'minWidth': '250px'},
+                                children=[
+                                    dbc.Row([
+                                        dbc.Col(html.Div([
+                                            dbc.Table(
+                                                generateCenterTable1(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), id='topTab', className='topTab'),
+                                            dbc.Table(
+                                                generateCenterTable2(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), id='botTab')
+                                        ])),
+                                    ])
+                                ]
+                            ),
+                            xs=12, sm=12, md=12, lg=12, xl=4, xxl=2,
+                        ),
 
-                dbc.Col(
-                    html.Div(
-                        className='row2Div',
-                        style={
-                            'minWidth': '525px'},
-                        children=[
-                            dbc.Row([
-                                dbc.Col(html.Div([
-                                    html.Div('PV-Erzeugung und Verbrauch', className='graphText'),
-                                    dcc.Graph(id="pve", figure=PVErzeugung_Verbrauch(main_data), className='row2graph')
-                                ])),
-                            ])
-                        ]
-                    ),
-                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=6,
-                )
-            ]
-        ),
-    ################################################################
-    # Third Row
-    ################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    html.Div(
-                        style={
-                            'backgroundColor': 'white',
-                            'borderRadius': '10px',
-                            'padding': '20px',
-                            'marginBottom': '20px',
-                            'minWidth': '300px'
-                        },
-                        children=[
-                            dbc.Row([
-                                dbc.Col(html.Div([
-                                    html.H4('Grossverbraucher und Batterie-Auslastung', className='graphText'),
-                                    dcc.Graph(id="grossV", figure=grossVerbraucher(main_data))
-                                ])),
+                        dbc.Col(
+                            html.Div(
+                                className='row2Div',
+                                style={
+                                    'minWidth': '525px'},
+                                children=[
+                                    dbc.Row([
+                                        dbc.Col(html.Div([
+                                            html.Div('PV-Erzeugung und Verbrauch', className='graphText'),
+                                            dcc.Graph(id="pve", figure=PVErzeugung_Verbrauch(main_data), className='row2graph')
+                                        ])),
+                                    ])
+                                ]
+                            ),
+                            xs=12, sm=12, md=12, lg=12, xl=12, xxl=6,
+                        )
+                    ]
+                )]),
+        ################################################################
+        # Third Row
+        ################################################################
+            dcc.Tab(label='Batterie Simulation', className='tab_style', selected_className='tab_style--selected', children=[
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            html.Div(
+                                className='row3Div',
+                                style={'minWidth': '300px'},
+                                children=[
+                                    dbc.Row([
+                                        dbc.Col(html.Div([
+                                            html.H4('Grossverbraucher und Batterie-Auslastung', className='graphText'),
+                                            dcc.Graph(id="grossV", figure=grossVerbraucher(main_data))
+                                        ])),
 
-                            ])
-                        ]
-                    ),
-                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=12,
-                )
-            ]
-        )
+                                    ])
+                                ]
+                            ),
+                            xs=12, sm=12, md=12, lg=12, xl=12, xxl=12,
+                        )
+                    ]
+                )])])
     ]
 )
 
@@ -264,11 +258,10 @@ def update_graphs_withBattery(date, batType, batEff, StrPr, StrVerg):
     mask = (main_data['realDatum'] > getCutOffDate(date))
     json_data = main_data[mask]
 
-
     figureGV = grossVerbraucher(json_data)
     figureGV.update_layout()
 
-    figureBat = batterie(json_data, getBatLimit(batType))
+    figureBat = batterieAnalyse(json_data,  getBatLimit(batType))
     figureBat.update_layout()
 
     topTable = generateCenterTable1(json_data, StrVerg, StrPr, getBatPrice(batType), batEff, getBatLimit(batType))
@@ -280,7 +273,6 @@ def update_graphs_withBattery(date, batType, batEff, StrPr, StrVerg):
 
 @callback(
     Output("pve", "figure"),
-    Output("üprod", "figure"),
     Input("zeitraum-dropdown","value"),
 )
 def update_graphs_noBattery(date):
@@ -290,10 +282,7 @@ def update_graphs_noBattery(date):
     figurePVE = PVErzeugung_Verbrauch(json_data)
     figurePVE.update_layout()
 
-    figureÜber = überproduktion(json_data)
-    figureÜber.update_layout()
-
-    return figurePVE, figureÜber
+    return figurePVE
 
 
 

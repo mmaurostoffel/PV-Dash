@@ -77,7 +77,18 @@ body {
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    min-height: 470px;
+    margin-top: 20px;
+    min-height: 550px;
+    padding-bottom: 20px;
+}
+
+.row3Div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    min-height: 550px;
     padding-bottom: 20px;
 }
 
@@ -85,9 +96,9 @@ body {
     padding-bottom: 20px;
 }
 
-.row2pie {
+.row2bat {
     min-width: 80px;
-    max-width: 200px;
+    max-width: 480px;
 }
 
 .graphText{
@@ -97,7 +108,7 @@ body {
     font-size: larger;
 }
 
-.pieDiv{
+.batDiv{
     align-content: center;
 }
 
@@ -109,4 +120,22 @@ table, tr, td, th{
     border: none;
 }
 
+.tab_style{
+    color: black;
+    font-size: large;
+    border-top-left-radius: 3px;
+    padding: 0px 24px;
 
+
+}
+
+.tab_style--selected{
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+    box-shadow: 1px 1px 0px white;
+    border-left: 1px solid lightgrey !important;
+    border-right: 1px solid lightgrey !important;
+    border-top: 3px solid #e36209 !important;
+
+}

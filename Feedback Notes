@@ -1,0 +1,49 @@
+
+Daten/Diagramme:
+    - Warum ein Tortendiagramm? Was passiert bei mehreren Attributen im Tortendiagramm?
+      Pie Chart nicht mehr so leicht interpretierbar.
+        Rückmeldung macht wenig Sinn: Es wird nie mehr als 2 Zustände geben (Ja/nein)
+        Trotzdem werde ich das Diagramm mit etwas anderem austauschen
+    - Area Chart: Erzeugung und Verbrauch aktuell überlappend, bessere Lösung finden
+        Behoben
+    - Vielleicht die gesparten Beträge und der finanziellen Erfolg könnte man auch noch grafisch untermalen?
+      Eventuell mit kleinen Balkendiagrammen? Es fehlt ein 4. Visualisierung
+        Rückmeldung macht wenig Sinn: Der finanzielle Erfolg ist ein Zwischenresultat. Es macht wenig Sinn diesen
+        speziell hervorzuheben.
+        Es hat 4 Visualisierungen? 2x Pie, 1x Area, 1 Säulenplot ??
+        Werde aber 2 Pies zu 1 stacked Bar chart Diagramm umwandeln und 1 Speedometer zur Amortisation
+        hinzufügen (o.ä)
+    - Balkendiagramm unten nicht lesbar, zu viele Balken: entweder mehrere Diagramme übereinander (Batterie
+      Verbrauch, etc untereinander, a la small multiples, DAV Stunde 7!) oder die Tage in Wochen zusammenfassen
+        Wird angepast
+    - Insgesamt: Ein paar mehr, bzw. anspruchsvollere Diagramme wären gut
+           Cluttering Gefahr... Ich finde jetzt schon, dass die Are Chart nur bedingt sinnvoll ist...
+    - Datenquelle fehlt
+        Behoben, Button muss noch verbessert werden
+
+Text:
+    - Nicht lesbar (x-Achsen,Überschriften)
+        Schlechte Farbewahl -> Wird angepasst
+    - Legenden fehlen noch
+        Sie meinen die Achsenbeschriftungen!
+
+Design:
+    - Mehrheit der Visualisierungen sind noch ungestaltet bzw. im Default Design → bitte noch überarbeiten
+        Schlechte Farben -> wird angepasst
+    - Geldwerte in Icons kodieren?
+        Nochmals: Finanzieller Erfolg ist nur ein ZWISCHENRESULTAT. Spezielle Signalisierung macht keinen Sinn.
+    - Farblegende fehlt und warum diese Farben?
+        Hä??? Jeder Plot hat eine Farblegede?
+        Farben werden angepasst
+    - Türkiese Titel schlecht lesbar auf Weiss.
+        Farben werden angepasst
+
+Dashboard:
+    - Bitte nicht scrollen in der finalen Abgabe
+        Behoben
+Hauptaufgabe:
+    - Positionierung Visualisierung «Grossverbraucher und Batterie Auslastung»: Die Visualisierung soll bspw. in
+      einen separaten Tab platziert werden, sodass kein Scrolling nötig ist.
+        Erledigt
+    - Gibt es eine intuitive Lösung wie der finanzielle Erfolg für den Betrachter erkennbar ist?
+        NOCHMALS: Finanzieller Erfolg ist nur ein ZWISCHENRESULTAT. Spezielle Signalisierung macht keinen Sinn.

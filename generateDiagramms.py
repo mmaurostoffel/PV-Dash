@@ -26,13 +26,41 @@ def grossVerbraucher(json_data):
     return fig
 
 
-def überproduktion(json_data):
+def batterieAnalyse(json_data, threshold):
     '''
     Generate the first pie Chart for the power consumption diagram.
     '''
+    tempData = json_data.groupby(by=["Produktion"])['Datum'].count()
+    if tempData[tempData > threshold].empty:
+        üTrue = 0
+        üFalse = 0
+    else:
+        üFalse = tempData.iloc[0]
+        üTrue = tempData.iloc[1]
+        üAll = üTrue + üFalse
+        üTrue = round(üTrue/üAll * 100, 0)
+        üFalse = round(üFalse/üAll * 100, 0)
+
+    x = json_data.groupby(by='realDatumOnlyDate').max()
+    y = x.groupby(by='batData').count()['Datum']
+    bTrue = 0
+    if threshold in y:
+        bTrue = y[threshold]
+
+    bAll = y.sum()
+    bFalse = bAll - bTrue
+    bTrue = round(bTrue/bAll * 100, 0)
+    bFalse = round(bFalse/bAll * 100, 0)
+
+
+
     color = ['red', 'blue']
-    legend = ['Tage mit Überproduktion', 'Tage ohne Überproduktion']
-    fig = px.pie(json_data.groupby(by=["Produktion"]).count(), values='PVErtrag', names=legend, color= color)
+    x = ['Tage mit Überproduktion', 'Tage mit voller Batterieauslastung']
+    fig = go.Figure(data=[
+        go.Bar(name='Wahr', x=x, y=[üTrue, bTrue]),
+        go.Bar(name='Falsch', x=x, y=[üFalse, bFalse]),
+    ])
+    fig.update_layout(barmode='stack')
     fig.update_layout(legend=dict(
         orientation="h",
         yanchor="bottom",
@@ -43,7 +71,6 @@ def überproduktion(json_data):
     fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     fig.update_layout(margin_pad=0)
     fig.update_layout(height=400)
-    fig.update_traces(textinfo='value')
     return fig
 
 
@@ -178,3 +205,4 @@ def generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     Amort = Ansch / FinErf
 
     return gesEn, Verg, Einsp, FinErf, Ansch, Amort
+
