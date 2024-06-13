@@ -1,33 +1,6 @@
 body {
     margin: 0;
 }
-
-.tableText{
-    font-weight: bold;
-    text-align: left;
-}
-
-.tableNum{
-    text-align: right;
-}
-
-.tableNumSec{
-    text-align: right;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-}
-
-.tableNumLast{
-    text-align: right;
-    text-decoration-line: underline;
-    text-decoration-style: double;
-}
-
-.tableNumAmort{
-    text-align: right;
-    border-radius: 10px;
-}
-
 .mainTitle, .subTitle{
     font-weight: bold;
 }
@@ -82,6 +55,15 @@ body {
     padding-bottom: 20px;
 }
 
+.row2Col {
+    padding-bottom: 20px;
+}
+
+.row2bat {
+    min-width: 80px;
+    max-width: 480px;
+}
+
 .row3Div {
     background-color: white;
     border-radius: 10px;
@@ -90,15 +72,6 @@ body {
     margin-top: 20px;
     min-height: 550px;
     padding-bottom: 20px;
-}
-
-.row2Col {
-    padding-bottom: 20px;
-}
-
-.row2bat {
-    min-width: 80px;
-    max-width: 480px;
 }
 
 .graphText{
@@ -112,12 +85,44 @@ body {
     align-content: center;
 }
 
+
+table, tr, td, th{
+    border: none;
+}
+
 .topTab{
     margin-bottom: 50px;
 }
 
-table, tr, td, th{
-    border: none;
+.tableText{
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: left;
+}
+
+.tableNum{
+    font-size: xx-large;
+    text-align: right;
+}
+
+.tableNumSec{
+    font-size: xx-large;
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+.tableNumLast{
+    font-size: xx-large;
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+}
+
+.tableNumAmort{
+    font-size: xx-large;
+    text-align: right;
+    border-radius: 10px;
 }
 
 .tab_style{

@@ -177,14 +177,14 @@ app.layout = html.Div(
                                     ])
                                 ]
                             ),
-                            xs=12, sm=12, md=12, lg=12, xl=4, xxl=2,
+                            xs=12, sm=12, md=12, lg=12, xl=4, xxl=4,
                         ),
 
                         dbc.Col(
                             html.Div(
                                 className='row2Div',
                                 style={
-                                    'minWidth': '525px'},
+                                    'minWidth': '200px'},
                                 children=[
                                     dbc.Row([
                                         dbc.Col(html.Div([
@@ -194,7 +194,7 @@ app.layout = html.Div(
                                     ])
                                 ]
                             ),
-                            xs=12, sm=12, md=12, lg=12, xl=12, xxl=6,
+                            xs=12, sm=12, md=12, lg=12, xl=12, xxl=4,
                         )
                     ]
                 )]),
