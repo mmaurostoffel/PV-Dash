@@ -19,10 +19,14 @@ def grossVerbraucher(json_data):
         yanchor="bottom",
         y=1.02,
         xanchor="center",
-        x=0.5
+        x=0.5,
+        font=dict(size=20)
     ))
     fig.update_layout(margin=dict(l=20, r=20, t=20, b=20))
-
+    fig.update_layout(xaxis_title="Datum", yaxis_title="Erträge & Verbäuche [kWh]")
+    fig.update_xaxes(title_font_size=20)
+    fig.update_yaxes(title_font_size=20)
+    fig.update_xaxes(tickfont_size=20)
     return fig
 
 
@@ -66,40 +70,14 @@ def batterieAnalyse(json_data, threshold):
         yanchor="bottom",
         y=1.02,
         xanchor="center",
-        x=0.5
+        x=0.5,
+        font = dict(size=20)
     ))
     fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     fig.update_layout(margin_pad=0)
     fig.update_layout(height=400)
-    return fig
-
-
-def batterie(json_data, threshold):
-    '''
-    Generate the second pie Chart for the battery usage
-    '''
-    x = json_data.groupby(by='realDatumOnlyDate').max()
-    y = x.groupby(by='batData').count()['Datum']
-    numOfFullDays = 0
-    if threshold in y:
-        numOfFullDays = y[threshold]
-
-    numRestDays = y.sum() - numOfFullDays
-    color = ['red','blue']
-    legend = ['Tage mit Vollauslastung', 'Tage ohne Vollauslastung']
-    fig = px.pie(values=[numOfFullDays, numRestDays], names= legend, color=color)
-    fig.update_layout(legend=dict(
-        orientation="h",
-        yanchor="bottom",
-        y=1.02,
-        xanchor="center",
-        x=0.5
-    ))
-    fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
-    fig.update_layout(margin_pad=0)
-    fig.update_layout(legend_traceorder="reversed")
-    fig.update_layout(height=400)
-    fig.update_traces(textinfo='value')
+    fig.update_layout(yaxis_title='[%]')
+    fig.update_yaxes(title_font_size=20)
     return fig
 
 
@@ -116,9 +94,13 @@ def PVErzeugung_Verbrauch(json_data):
         yanchor="bottom",
         y=1.02,
         xanchor="center",
-        x=0.5
+        x=0.5,
+        font=dict(size=20)
     ))
     fig.update_layout(height=400)
+    fig.update_layout(xaxis_title="Datum", yaxis_title="Erträge & Verbäuche [kWh]")
+    fig.update_xaxes(title_font_size= 20)
+    fig.update_yaxes(title_font_size=20)
     return fig
 
 

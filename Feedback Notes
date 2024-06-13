@@ -4,8 +4,9 @@ Daten/Diagramme:
       Pie Chart nicht mehr so leicht interpretierbar.
         Rückmeldung macht wenig Sinn: Es wird nie mehr als 2 Zustände geben (Ja/nein)
         Trotzdem werde ich das Diagramm mit etwas anderem austauschen
+        BEHOBEN
     - Area Chart: Erzeugung und Verbrauch aktuell überlappend, bessere Lösung finden
-        Behoben
+        BEHOBEN
     - Vielleicht die gesparten Beträge und der finanziellen Erfolg könnte man auch noch grafisch untermalen?
       Eventuell mit kleinen Balkendiagrammen? Es fehlt ein 4. Visualisierung
         Rückmeldung macht wenig Sinn: Der finanzielle Erfolg ist ein Zwischenresultat. Es macht wenig Sinn diesen
@@ -17,15 +18,16 @@ Daten/Diagramme:
       Verbrauch, etc untereinander, a la small multiples, DAV Stunde 7!) oder die Tage in Wochen zusammenfassen
         Wird angepast
     - Insgesamt: Ein paar mehr, bzw. anspruchsvollere Diagramme wären gut
-           Cluttering Gefahr... Ich finde jetzt schon, dass die Are Chart nur bedingt sinnvoll ist...
+           Cluttering Gefahr... Ich finde jetzt schon, dass die Area Chart nur bedingt sinnvoll ist...
     - Datenquelle fehlt
-        Behoben, Button muss noch verbessert werden
+        BEHOBEN
 
 Text:
     - Nicht lesbar (x-Achsen,Überschriften)
         Schlechte Farbewahl -> Wird angepasst
     - Legenden fehlen noch
         Sie meinen die Achsenbeschriftungen!
+        BEHOBEN
 
 Design:
     - Mehrheit der Visualisierungen sind noch ungestaltet bzw. im Default Design → bitte noch überarbeiten
@@ -40,10 +42,10 @@ Design:
 
 Dashboard:
     - Bitte nicht scrollen in der finalen Abgabe
-        Behoben
+        BEHOBEN
 Hauptaufgabe:
     - Positionierung Visualisierung «Grossverbraucher und Batterie Auslastung»: Die Visualisierung soll bspw. in
       einen separaten Tab platziert werden, sodass kein Scrolling nötig ist.
-        Erledigt
+        BEHOBEN
     - Gibt es eine intuitive Lösung wie der finanzielle Erfolg für den Betrachter erkennbar ist?
         NOCHMALS: Finanzieller Erfolg ist nur ein ZWISCHENRESULTAT. Spezielle Signalisierung macht keinen Sinn.

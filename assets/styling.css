@@ -1,18 +1,51 @@
+/* -------------------------*/
+/* GENERAL */
+/* -------------------------*/
+
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
+    min-height: 100vh;
 }
+
+
+/* -------------------------*/
+/* TITEL */
+/* -------------------------*/
 .mainTitle, .subTitle{
     font-weight: bold;
 }
 
 .mainTitle{
-    font-size: 40px;
+    font-size: xxx-large;
 }
 
 .subTitle{
-    font-size: 30px;
+    font-size: x-large;
 }
 
+.infoButton {
+    position: relative;
+    top: -60px;
+    margin-right: 10px;
+    float: right;
+    height: 35px;
+    width: 35px;
+    border-radius: 10px;
+    background-color: white;
+    border-color: black;
+    color: black;
+    font-weight: bold;
+    font-family: "serif"
+}
+
+
+/* -------------------------*/
+/* DROPDOWNS */
+/* -------------------------*/
 .DDtext{
     color: lightblue;
     font-weight:bold;
@@ -29,6 +62,10 @@ body {
     height: 50px;
 }
 
+
+/* -------------------------*/
+/* 1. REIHE */
+/* -------------------------*/
 .row1Div {
     background-color: white;
     border-radius: 10px;
@@ -45,6 +82,10 @@ body {
     padding-bottom: 20px;
 }
 
+
+/* -------------------------*/
+/* 2. REIHE */
+/* -------------------------*/
 .row2Div {
     background-color: white;
     border-radius: 10px;
@@ -64,27 +105,9 @@ body {
     max-width: 480px;
 }
 
-.row3Div {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    min-height: 550px;
-    padding-bottom: 20px;
-}
-
-.graphText{
-    color: lightblue;
-    font-weight:bold;
-    text-align: center;
-    font-size: larger;
-}
-
 .batDiv{
     align-content: center;
 }
-
 
 table, tr, td, th{
     border: none;
@@ -95,43 +118,66 @@ table, tr, td, th{
 }
 
 .tableText{
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bold;
     text-align: left;
 }
 
 .tableNum{
-    font-size: xx-large;
+    font-size: x-large;
     text-align: right;
 }
 
 .tableNumSec{
-    font-size: xx-large;
+    font-size: x-large;
     text-align: right;
     text-decoration-line: underline;
     text-decoration-style: solid;
 }
 
 .tableNumLast{
-    font-size: xx-large;
+    font-size: x-large;
     text-align: right;
     text-decoration-line: underline;
     text-decoration-style: double;
 }
 
 .tableNumAmort{
-    font-size: xx-large;
+    font-size: x-large;
     text-align: right;
     border-radius: 10px;
 }
 
+.graphText{
+    color: lightblue;
+    font-weight:bold;
+    text-align: center;
+    font-size: larger;
+}
+
+
+/* -------------------------*/
+/* 3. REIHE */
+/* -------------------------*/
+.row3Div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    min-height: 550px;
+    padding-bottom: 20px;
+}
+
+
+/* -------------------------*/
+/* TABS */
+/* -------------------------*/
 .tab_style{
     color: black;
     font-size: large;
     border-top-left-radius: 3px;
     padding: 0px 24px;
-
-
 }
 
 .tab_style--selected{

@@ -53,14 +53,14 @@ modalString2 = "Sämtliche verwendete Daten wurden durch das Monitoring System v
 
 modalButton = html.Div(
     [
-        dbc.Button("Impressum und Quellen", id="open", n_clicks=0),
+        dbc.Button('i', className='infoButton', id="open", n_clicks=0),
         dbc.Modal(
             [
                 dbc.ModalHeader(dbc.ModalTitle("Impressum und Quellen")),
                 dbc.ModalBody([html.Div(modalString1), html.Div(modalString2)]),
                 dbc.ModalFooter(
                     dbc.Button(
-                        "Close", id="close", className="ms-auto", n_clicks=0
+                        "Close", id="close", n_clicks=0
                     )
                 ),
             ],
@@ -82,15 +82,18 @@ app.layout = html.Div(
                 dbc.Col(
                     html.Div(
                         className='row1Div',
-                        style={'minWidth': '480px'},
                         children=[
                             dbc.Row([
-                                html.Div("Batteriespeicher", className='mainTitle'),
+
+                                html.Div(
+                                    children=["Batteriespeicher",
+                                    modalButton,
+                                ], className='mainTitle', ),
                                 html.Div("Wirtschaftlichkeitsberechnung", className='subTitle')
                             ])
                         ]
                     ),
-                    xs=4, sm=4, md=4, lg=4, xl=4, xxl=4
+                    xs=8, sm=8, md=8, lg=8, xl=8, xxl=4
                 ),
                 dbc.Col(
                     html.Div(
@@ -125,16 +128,7 @@ app.layout = html.Div(
                             ]),
                         ]
                     ),
-                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=7,
-                ),
-                dbc.Col(
-                    html.Div(
-                        className='row1Div',
-                        children=[
-                            modalButton
-                        ]
-                    ), align="center",
-                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=1,
+                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=7
                 )
             ]
         ),
