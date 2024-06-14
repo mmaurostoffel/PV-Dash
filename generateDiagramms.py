@@ -63,7 +63,7 @@ def batterieAnalyse(json_data, threshold):
 
     colors = {'Wahr': 'red',
               'Falsch': 'blue'}
-    x = ['Tage mit Überproduktion', 'Tage mit voller Batterieauslastung']
+    x = ['Tage mit<br>Überproduktion', 'Tage mit voller<br>Batterieauslastung']
     fig = go.Figure(data=[
         go.Bar(name='Wahr', x=x, y=[üTrue, bTrue], marker_color=colors['Wahr']),
         go.Bar(name='Falsch', x=x, y=[üFalse, bFalse], marker_color=colors['Falsch']),
@@ -79,6 +79,7 @@ def batterieAnalyse(json_data, threshold):
     ))
     fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     fig.update_layout(margin_pad=0)
+    fig.update_layout(height=500)
     fig.update_layout(yaxis_title='[%]')
     fig.update_yaxes(title_font_size=20)
     fig.update_xaxes(tickfont_size=20)
@@ -106,6 +107,7 @@ def PVErzeugung_Verbrauch(json_data):
     fig.update_layout(xaxis_title="Datum", yaxis_title="Erträge & Verbäuche [kWh]")
     fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     fig.update_layout(margin_pad=0)
+    fig.update_layout(height=500)
     fig.update_xaxes(title_font_size=20)
     fig.update_yaxes(title_font_size=20)
     fig.update_xaxes(tickfont_size=15)
@@ -199,7 +201,7 @@ def generateCenterGauge(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
                    {'range': [0, 10], 'color': "green"},
                    {'range': [10, 20], 'color': "red"}]
                }))
-    fig.update_layout(height=int(300))
+    fig.update_layout(height=300)
     fig.update_layout(margin=dict(l=0, r=0, b=0))
     fig.update_layout(margin_pad=0)
     fig.update_yaxes(title_font_size=20)

@@ -147,7 +147,7 @@ app.layout = html.Div(
                                     dbc.Row([
                                         dbc.Col(html.Div([
                                             html.Div('Batterieanalyse', className='graphText'),
-                                            dcc.Graph(id="bat", figure=batterieAnalyse(main_data, batMax[0]), className='row2bat')
+                                            dcc.Graph(id="bat", figure=batterieAnalyse(main_data, batMax[0]), className='row2bat', style={'height': '500px'})
                                         ], className= 'batDiv')),
                                     ])
                                 ]
@@ -171,7 +171,7 @@ app.layout = html.Div(
                                     ]),
                                     dbc.Row([
                                         dbc.Col(html.Div([
-                                            dcc.Graph(id="gauge", figure=generateCenterGauge(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), className='row2gauge')
+                                            dcc.Graph(id="gauge", figure=generateCenterGauge(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), className='row2gauge', style={'height': '300px'})
                                         ])),
                                     ])
                                 ]
@@ -188,7 +188,7 @@ app.layout = html.Div(
                                     dbc.Row([
                                         dbc.Col(html.Div([
                                             html.Div('PV-Erzeugung und Verbrauch', className='graphText'),
-                                            dcc.Graph(id="pve", figure=PVErzeugung_Verbrauch(main_data), className='row2graph')
+                                            dcc.Graph(id="pve", figure=PVErzeugung_Verbrauch(main_data), className='row2graph', style={'height': '500px'})
                                         ])),
                                     ])
                                 ]
@@ -211,7 +211,7 @@ app.layout = html.Div(
                                     dbc.Row([
                                         dbc.Col(html.Div([
                                             html.H4('Grossverbraucher und Batterie-Auslastung', className='graphText'),
-                                            dcc.Graph(id="grossV", figure=grossVerbraucher(main_data))
+                                            dcc.Graph(id="grossV", figure=grossVerbraucher(main_data), style={'height': '600px'}),
                                         ])),
 
                                     ])
