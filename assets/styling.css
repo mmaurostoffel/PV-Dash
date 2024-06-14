@@ -92,8 +92,9 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     margin-top: 20px;
-    min-height: 550px;
+    min-height: 650px;
     padding-bottom: 20px;
+    align-content: center;
 }
 
 .row2Col {
@@ -176,7 +177,7 @@ table, tr, td, th{
     padding: 20px;
     margin-bottom: 20px;
     margin-top: 20px;
-    min-height: 550px;
+    min-height: 650px;
     padding-bottom: 20px;
 }
 

@@ -102,7 +102,7 @@ app.layout = html.Div(
                             dbc.Row([
                                 dbc.Col(html.Div([
                                     html.Div('Zeitraum', className='DDtext'),
-                                    dcc.Dropdown(dateDropdownList, dateDropdownList[0], id='zeitraum-dropdown', clearable=False, className='row1DD')
+                                    dcc.Dropdown(dateDropdownList, dateDropdownList[2], id='zeitraum-dropdown', clearable=False, className='row1DD')
                                 ], className='ddbig'), className='row1Col', width=12, lg=6),
                                 dbc.Col(html.Div([
                                     html.Div('Batterie', className='DDtext'),
