@@ -1,6 +1,7 @@
 from dash import html
 from plotly import graph_objects as go, express as px
 import pandas as pd
+from scipy import signal
 
 
 def grossVerbraucher(json_data):
@@ -10,9 +11,9 @@ def grossVerbraucher(json_data):
     fig = go.Figure()
     #tozeroy
     #tonexty
-    fig.add_trace(go.Scatter(name="PV-Ertrag", x=json_data['Datum'], y=json_data['PVErtrag'], fill='tonexty', mode= 'none'))  # fill down to xaxis
-    fig.add_trace(go.Scatter(name="Verbrauch", x=json_data['Datum'], y=json_data['Verbrauch'], fill='tozeroy', mode= 'none'))
-    fig.add_trace(go.Scatter(name="Batterie Auslastung", x=json_data['Datum'], y=json_data['batData'], fill='tozeroy', mode= 'none'))# fill to trace0 y
+    fig.add_trace(go.Scatter(name="PV-Ertrag", x=json_data['Datum'], y=signal.savgol_filter(json_data['PVErtrag'],53,3), fill='tonexty', mode= 'none',))  # fill down to xaxis
+    fig.add_trace(go.Scatter(name="Verbrauch", x=json_data['Datum'], y=signal.savgol_filter(json_data['Verbrauch'],53,3), fill='tozeroy', mode= 'none'))
+    fig.add_trace(go.Scatter(name="Batterie Auslastung", x=json_data['Datum'], y=signal.savgol_filter(json_data['batData'], 53, 3), fill='tozeroy', mode= 'none'))# fill to trace0 y
     fig.add_trace(go.Scatter(name="10 kWh Linie", x=json_data['Datum'], y=json_data['10 kWh Linie']))
     fig.update_layout(legend=dict(
         orientation="h",
@@ -37,7 +38,7 @@ def batterieAnalyse(json_data, threshold):
     tempData = json_data.groupby(by=["Produktion"])['Datum'].count()
     if tempData[tempData > threshold].empty:
         üTrue = 0
-        üFalse = 0
+        üFalse = 100
     else:
         üFalse = tempData.iloc[0]
         üTrue = tempData.iloc[1]
@@ -58,11 +59,12 @@ def batterieAnalyse(json_data, threshold):
 
 
 
-    color = ['red', 'blue']
+    colors = {'Wahr': 'red',
+              'Falsch': 'blue'}
     x = ['Tage mit Überproduktion', 'Tage mit voller Batterieauslastung']
     fig = go.Figure(data=[
-        go.Bar(name='Wahr', x=x, y=[üTrue, bTrue]),
-        go.Bar(name='Falsch', x=x, y=[üFalse, bFalse]),
+        go.Bar(name='Wahr', x=x, y=[üTrue, bTrue], marker_color=colors['Wahr']),
+        go.Bar(name='Falsch', x=x, y=[üFalse, bFalse], marker_color=colors['Falsch']),
     ])
     fig.update_layout(barmode='stack')
     fig.update_layout(legend=dict(
@@ -148,7 +150,6 @@ def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
         col = 'greenyellow'
     else:
         col = 'crimson'
-    print(col)
 
     text = round(Ansch,1), ' CHF'
     row5 = html.Tr([
@@ -165,6 +166,34 @@ def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     table_body = [html.Tbody([row5, row6])]
     return table_body
 
+def generateCenterGauge(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
+    '''
+    Generate the diagramm below the center Table
+    '''
+
+    gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit)
+
+    fig = go.Figure(go.Indicator(
+        domain={'x': [0, 1], 'y': [0, 1]},
+        value=Amort,
+        number={'suffix':" J"},
+        mode="gauge+number+delta",
+        title={'text': "Amortisation",
+               'font': {'size': 30, 'weight': 'bold'},
+               },
+        delta={'reference': 10,
+               'decreasing': {'color': 'green'},
+               'increasing': {'color': 'red'},
+               'suffix': ' J'
+               },
+        gauge={'bar': {'color': "gray"},
+               'axis': {'range': [None, 20]},
+               'steps': [
+                   {'range': [0, 10], 'color': "green"},
+                   {'range': [10, 20], 'color': "red"}]
+
+               }))
+    return fig
 
 def generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     '''
@@ -187,4 +216,3 @@ def generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     Amort = Ansch / FinErf
 
     return gesEn, Verg, Einsp, FinErf, Ansch, Amort
-

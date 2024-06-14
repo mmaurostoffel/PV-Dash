@@ -1,3 +1,20 @@
+TO-DO Tasks
+Text:
+    - Nicht lesbar (x-Achsen,Überschriften)
+        Schlechte Farbewahl -> Wird angepasst
+Design:
+    - Mehrheit der Visualisierungen sind noch ungestaltet bzw. im Default Design → bitte noch überarbeiten
+        Schlechte Farben -> wird angepasst
+    - Farblegende fehlt und warum diese Farben?
+        Hä??? Jeder Plot hat eine Farblegede?
+        Farben werden angepasst
+    - Türkiese Titel schlecht lesbar auf Weiss.
+        Farben werden angepasst
+
+
+
+Komplette Liste
+
 
 Daten/Diagramme:
     - Warum ein Tortendiagramm? Was passiert bei mehreren Attributen im Tortendiagramm?
@@ -14,11 +31,13 @@ Daten/Diagramme:
         Es hat 4 Visualisierungen? 2x Pie, 1x Area, 1 Säulenplot ??
         Werde aber 2 Pies zu 1 stacked Bar chart Diagramm umwandeln und 1 Speedometer zur Amortisation
         hinzufügen (o.ä)
+        BEHOBEN
     - Balkendiagramm unten nicht lesbar, zu viele Balken: entweder mehrere Diagramme übereinander (Batterie
       Verbrauch, etc untereinander, a la small multiples, DAV Stunde 7!) oder die Tage in Wochen zusammenfassen
-        Wird angepast
+        BEHOBEN
     - Insgesamt: Ein paar mehr, bzw. anspruchsvollere Diagramme wären gut
            Cluttering Gefahr... Ich finde jetzt schon, dass die Area Chart nur bedingt sinnvoll ist...
+           BEHOBEN
     - Datenquelle fehlt
         BEHOBEN
 
@@ -34,6 +53,7 @@ Design:
         Schlechte Farben -> wird angepasst
     - Geldwerte in Icons kodieren?
         Nochmals: Finanzieller Erfolg ist nur ein ZWISCHENRESULTAT. Spezielle Signalisierung macht keinen Sinn.
+        WIRD NICHT UMGESETZT
     - Farblegende fehlt und warum diese Farben?
         Hä??? Jeder Plot hat eine Farblegede?
         Farben werden angepasst
@@ -49,3 +69,5 @@ Hauptaufgabe:
         BEHOBEN
     - Gibt es eine intuitive Lösung wie der finanzielle Erfolg für den Betrachter erkennbar ist?
         NOCHMALS: Finanzieller Erfolg ist nur ein ZWISCHENRESULTAT. Spezielle Signalisierung macht keinen Sinn.
+        WIRD NICHT UMGESETZT
+        --> Stattdessen Gauge Plot für die Darstellung der Amortisation eingebaut

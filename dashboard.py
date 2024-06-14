@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 from datetime import datetime, timedelta
 
 from fetchData import getBaseData, getBatteryData, generateBatData
-from generateDiagramms import grossVerbraucher, batterieAnalyse, PVErzeugung_Verbrauch, generateCenterTable1, generateCenterTable2
+from generateDiagramms import grossVerbraucher, batterieAnalyse, PVErzeugung_Verbrauch, generateCenterTable1, generateCenterTable2, generateCenterGauge
 
 
 def getCutOffDate(date):
@@ -168,6 +168,11 @@ app.layout = html.Div(
                                             dbc.Table(
                                                 generateCenterTable2(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), id='botTab')
                                         ])),
+                                    ]),
+                                    dbc.Row([
+                                        dbc.Col(html.Div([
+                                            dcc.Graph(id="gauge", figure=generateCenterGauge(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), className='row2gauge')
+                                        ])),
                                     ])
                                 ]
                             ),
@@ -234,6 +239,7 @@ def toggle_modal(n1, n2, is_open):
 @callback(
     Output("grossV", "figure"),
     Output("bat", "figure"),
+    Output("gauge", "figure"),
     Output("topTab", "children"),
     Output("botTab", "children"),
     Input("zeitraum-dropdown","value"),
@@ -258,10 +264,13 @@ def update_graphs_withBattery(date, batType, batEff, StrPr, StrVerg):
     figureBat = batterieAnalyse(json_data,  getBatLimit(batType))
     figureBat.update_layout()
 
+    figureGauge = generateCenterGauge(json_data, StrVerg, StrPr, getBatPrice(batType), batEff, getBatLimit(batType))
+    figureGauge.update_layout()
+
     topTable = generateCenterTable1(json_data, StrVerg, StrPr, getBatPrice(batType), batEff, getBatLimit(batType))
     botTable = generateCenterTable2(json_data, StrVerg, StrPr, getBatPrice(batType), batEff, getBatLimit(batType))
 
-    return figureGV, figureBat, topTable, botTable
+    return figureGV, figureBat, figureGauge, topTable, botTable
 
 
 

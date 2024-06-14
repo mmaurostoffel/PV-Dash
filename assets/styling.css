@@ -102,7 +102,17 @@ body {
 
 .row2bat {
     min-width: 80px;
-    max-width: 480px;
+    align-content: center;
+}
+
+.row2gauge{
+    min-width: 80px;
+    align-content: center;
+}
+
+.row2graph{
+    min-width: 80px;
+    align-content: center;
 }
 
 .batDiv{
@@ -114,38 +124,39 @@ table, tr, td, th{
 }
 
 .topTab{
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .tableText{
-    font-size: x-large;
+    font-size: medium;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
 }
 
 .tableNum{
-    font-size: x-large;
-    text-align: right;
+    font-size: medium;
+    text-align: center;
 }
 
 .tableNumSec{
-    font-size: x-large;
-    text-align: right;
+    font-size: medium;
+    text-align: center;
     text-decoration-line: underline;
     text-decoration-style: solid;
 }
 
 .tableNumLast{
-    font-size: x-large;
-    text-align: right;
+    font-size: medium;
+    text-align: center;
     text-decoration-line: underline;
     text-decoration-style: double;
 }
 
 .tableNumAmort{
-    font-size: x-large;
-    text-align: right;
+    font-size: medium;
+    text-align: center;
     border-radius: 10px;
+    border: double;
 }
 
 .graphText{
