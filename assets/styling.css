@@ -71,7 +71,6 @@ body {
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    min-height: 190px;
 }
 
 .row1DD {
@@ -94,7 +93,6 @@ body {
 /* -------------------------*/
 .row2Div {
     padding: 20px;
-    min-height: 650px;
     align-content: center;
     border: 1px solid #f9f9f9;
     border-radius: 1rem;
@@ -177,7 +175,6 @@ table, tr, td, th{
 /* -------------------------*/
 .row3Div {
     padding: 20px;
-    min-height: 650px;
     border: 1px solid #f9f9f9;
     border-radius: 1rem;
     box-shadow: .1rem .1rem .1rem rgba(0,0,0,0.02);
@@ -187,11 +184,11 @@ table, tr, td, th{
 /* -------------------------*/
 /* TABS */
 /* -------------------------*/
-.tab_style{
+div.tab.tab_style{
     color: black;
     font-size: large;
-    padding: 0px 24px;
-    border-radius: 1rem 1rem 0 0;
+    padding: .25em 1em;
+    border-radius: .5rem .5rem 0 0;
     border-left: none !important;
     border-right: none !important;
 }

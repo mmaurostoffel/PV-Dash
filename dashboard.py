@@ -169,7 +169,7 @@ app.layout = html.Div(
                                     ]),
                                     dbc.Row([
                                         dbc.Col(html.Div([
-                                            dcc.Graph(id="gauge", figure=generateCenterGauge(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), className='row2gauge', style={'height': '300px'})
+                                            dcc.Graph(id="gauge", figure=generateCenterGauge(main_data, strVerDropdownList[14], strPrDropdownList[16], getBatPrice(batterieDropdownList[0]), batterieEffDropdownList[-3], batMax[0]), className='row2gauge')
                                         ])),
                                     ])
                                 ]
