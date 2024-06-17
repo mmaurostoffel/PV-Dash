@@ -50,6 +50,7 @@ app.css.append_css({'external_url': '/assets/styling.css'})
 
 modalString1 = "Das Dashboard wurde im Rahmen des Moduls und «Dashboard Design» an der FHGR erstellt. Die Autoren sind Mauro Stoffel und Marc-Alexander Iten."
 modalString2 = "Sämtliche verwendete Daten wurden durch das Monitoring System von Herr Itens Photovoltaik Anlage aufgezeichnet und über eine selbst entwicklete API zur Verfügung gestellt."
+modalString3 = html.A("( API-Dokumentation )", href="https://iten-web.ch/batteriespeicher/api-documentations", target="api-doc") ## <a href='https://iten-web.ch/batteriespeicher/api-documentations' target='api-doc'>API-Dokumentation</a>)</div>"
 
 modalButton = html.Div(
     [
@@ -57,7 +58,7 @@ modalButton = html.Div(
         dbc.Modal(
             [
                 dbc.ModalHeader(dbc.ModalTitle("Impressum und Quellen")),
-                dbc.ModalBody([html.Div(modalString1), html.Div(modalString2)]),
+                dbc.ModalBody([html.Div(modalString1), html.Div(modalString2), html.Div(modalString3)]),
                 dbc.ModalFooter(
                     dbc.Button(
                         "Close", id="close", n_clicks=0
@@ -93,7 +94,7 @@ app.layout = html.Div(
                             ])
                         ]
                     ),
-                    xs=8, sm=8, md=8, lg=8, xl=8, xxl=4
+                    xs=12, sm=12, md=12, lg=12, xl=4, xxl=4
                 ),
                 dbc.Col(
                     html.Div(
@@ -112,23 +113,23 @@ app.layout = html.Div(
                             dbc.Row([
                                 dbc.Col(html.Div([
                                     html.Div('Batterie Effizienz in [%]', className='DDtext'),
-                                    dcc.Dropdown(batterieEffDropdownList, batterieEffDropdownList[-3],
+                                    dcc.Dropdown(batterieEffDropdownList, batterieEffDropdownList[-4],
                                                  id='batEff-dropdown', clearable=False, className='row1DD')
                                 ], className='ddbig'), className='row1Col', width=12, lg=6),
                                 dbc.Col(html.Div([
                                     html.Div('Strompreis', className='DDtext'),
-                                    dcc.Dropdown(strPrDropdownList, strPrDropdownList[16], id='StrPr-dropdown',
+                                    dcc.Dropdown(strPrDropdownList, strPrDropdownList[5], id='StrPr-dropdown',
                                                  clearable=False, className='row1DD')
                                 ], className='ddsmall'), className='row1Col', width=12, lg=3),
                                 dbc.Col(html.Div([
                                     html.Div('Stromvergütung', className='DDtext'),
-                                    dcc.Dropdown(strVerDropdownList, strVerDropdownList[14], id='StrVerg-dropdown',
+                                    dcc.Dropdown(strVerDropdownList, strVerDropdownList[2], id='StrVerg-dropdown',
                                                  clearable=False, className='row1DD')
                                 ], className='ddsmall'), className='row1Col', width=12, lg=3),
                             ]),
                         ]
                     ),
-                    xs=12, sm=12, md=12, lg=12, xl=12, xxl=7
+                    xs=12, sm=12, md=12, lg=12, xl=8, xxl=8
                 )
             ]
         ),
@@ -142,7 +143,6 @@ app.layout = html.Div(
                         dbc.Col(
                             html.Div(
                                 className='row2Div',
-                                style={'minWidth': '525px'},
                                 children=[
                                     dbc.Row([
                                         dbc.Col(html.Div([
@@ -158,8 +158,6 @@ app.layout = html.Div(
                         dbc.Col(
                             html.Div(
                                 className='row2Div',
-                                style={
-                                    'minWidth': '250px'},
                                 children=[
                                     dbc.Row([
                                         dbc.Col(html.Div([
@@ -182,8 +180,6 @@ app.layout = html.Div(
                         dbc.Col(
                             html.Div(
                                 className='row2Div',
-                                style={
-                                    'minWidth': '200px'},
                                 children=[
                                     dbc.Row([
                                         dbc.Col(html.Div([

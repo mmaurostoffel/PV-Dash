@@ -40,7 +40,7 @@ def getBatteryData():
 
     batData = batdata['response']
     for data in batData:
-        batCaption.append(data['caption'])
+        batCaption.append((data['caption'] + " ( " + str(data['max'] / 1000) + "kWh )"))
         batMax.append(data['max'])
         batPrice.append(data['price'])
     return batCaption, batMax, batPrice

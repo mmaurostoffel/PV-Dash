@@ -24,7 +24,7 @@ def grossVerbraucher(json_data):
         font=dict(size=20)
     ))
     fig.update_layout(margin=dict(l=20, r=20, t=20, b=20))
-    fig.update_layout(xaxis_title="Datum", yaxis_title="Erträge &<br>Verbäuche<br>[kWh]")
+    fig.update_layout(xaxis_title="Datum", yaxis_title="Erträge & Verbäuche [kWh]")
     fig.update_layout(height=600)
     fig.update_xaxes(title_font_size=20)
     fig.update_yaxes(title_font_size=20)
@@ -38,31 +38,33 @@ def batterieAnalyse(json_data, threshold):
     Generate the first pie Chart for the power consumption diagram.
     '''
     tempData = json_data.groupby(by=["Produktion"])['Datum'].count()
+
+    x = json_data.groupby(by='realDatumOnlyDate').max()
+    y = x.groupby(by='batData').count()['Datum']
+    bAll = y.sum()
+
     if tempData[tempData > threshold].empty:
         üTrue = 0
-        üFalse = 100
+        üFalse = bAll
     else:
         üFalse = tempData.iloc[0]
         üTrue = tempData.iloc[1]
         üAll = üTrue + üFalse
-        üTrue = round(üTrue/üAll * 100, 0)
-        üFalse = round(üFalse/üAll * 100, 0)
+        üTrue = round(üTrue/üAll * bAll, 0)
+        üFalse = round(üFalse/üAll * bAll, 0)
 
-    x = json_data.groupby(by='realDatumOnlyDate').max()
-    y = x.groupby(by='batData').count()['Datum']
     bTrue = 0
     if threshold in y:
         bTrue = y[threshold]
 
-    bAll = y.sum()
     bFalse = bAll - bTrue
-    bTrue = round(bTrue/bAll * 100, 0)
-    bFalse = round(bFalse/bAll * 100, 0)
+    bTrue = round(bTrue, 0)
+    bFalse = round(bFalse, 0)
 
 
 
-    colors = {'Wahr': 'red',
-              'Falsch': 'blue'}
+    colors = {'Wahr': 'rgba(0,0,255,0.3)',
+              'Falsch': 'rgba(255,0,0,0.3)'}
     x = ['Tage mit<br>Überproduktion', 'Tage mit voller<br>Batterieauslastung']
     fig = go.Figure(data=[
         go.Bar(name='Wahr', x=x, y=[üTrue, bTrue], marker_color=colors['Wahr']),
@@ -80,7 +82,7 @@ def batterieAnalyse(json_data, threshold):
     fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     fig.update_layout(margin_pad=0)
     fig.update_layout(height=500)
-    fig.update_layout(yaxis_title='[%]')
+    fig.update_layout(yaxis_title='Tage')
     fig.update_yaxes(title_font_size=20)
     fig.update_xaxes(tickfont_size=20)
     fig.update_yaxes(tickfont_size=15)
@@ -104,7 +106,7 @@ def PVErzeugung_Verbrauch(json_data):
         font=dict(size=20)
     ))
     #fig.update_layout(height=400)
-    fig.update_layout(xaxis_title="Datum", yaxis_title="Erträge &<br>Verbäuche<br>[kWh]")
+    fig.update_layout(xaxis_title="Datum", yaxis_title="Erträge & Verbäuche [kWh]")
     fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     fig.update_layout(margin_pad=0)
     fig.update_layout(height=500)
@@ -156,9 +158,9 @@ def generateCenterTable2(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     gesEn, Verg, Einsp, FinErf, Ansch, Amort = generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit)
 
     if Amort < 10:
-        col = 'greenyellow'
+        col = 'rgba(0,200,0,1)'
     else:
-        col = 'crimson'
+        col = 'rgba(255,0,0,1)'
 
     text = round(Ansch,1), ' CHF'
     row5 = html.Tr([
@@ -191,17 +193,17 @@ def generateCenterGauge(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
                'font': {'size': 30, 'weight': 'bold'},
                },
         delta={'reference': 10,
-               'decreasing': {'color': 'green'},
-               'increasing': {'color': 'red'},
+               'decreasing': {'color': 'rgba(0,200,0,1)'},
+               'increasing': {'color': 'rgba(255,0,0,1)'},
                'suffix': ' J'
                },
         gauge={'bar': {'color': "gray"},
                'axis': {'range': [None, 20]},
                'steps': [
-                   {'range': [0, 10], 'color': "green"},
-                   {'range': [10, 20], 'color': "red"}]
+                   {'range': [0, 10], 'color': "rgba(0,200,0,0.3)"},
+                   {'range': [10, 20], 'color': "rgba(255,0,0,0.3)"}]
                }))
-    fig.update_layout(height=300)
+    fig.update_layout(height=250)
     fig.update_layout(margin=dict(l=0, r=0, b=0))
     fig.update_layout(margin_pad=0)
     fig.update_yaxes(title_font_size=20)
@@ -214,11 +216,12 @@ def generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
     '''
 
     #fetch Data from API
-    url = 'https://iten-web.ch/batteriespeicher/api/batteries/'+str(batLimit)+'/'+str(batEff*100)
+    url = 'https://iten-web.ch/batteriespeicher/api/batteries/'+str(batLimit)+'/'+str(batEff)
     batData = pd.read_json(url)
     gesEn = batData.iloc[0, 0] / 1000
+    losEn = batData.iloc[1, 0] / 1000
 
-    Verg = gesEn * StrVerg *-1
+    Verg = losEn * StrVerg *-1
 
     Einsp = gesEn * StrPr
 
@@ -226,6 +229,6 @@ def generateCenterData(json_data, StrVerg, StrPr, BatPrice, batEff, batLimit):
 
     Ansch = BatPrice
 
-    Amort = Ansch / FinErf
+    Amort = Ansch / FinErf / 365 * batData.iloc[2, 0]
 
     return gesEn, Verg, Einsp, FinErf, Ansch, Amort

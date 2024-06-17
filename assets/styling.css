@@ -20,11 +20,11 @@ body {
 }
 
 .mainTitle{
-    font-size: xxx-large;
+    font-size: clamp(20px, 3vw, 48px);
 }
 
 .subTitle{
-    font-size: x-large;
+    font-size: clamp(16px, 2vw, 36px);
 }
 
 .infoButton {
@@ -82,19 +82,23 @@ body {
     padding-bottom: 20px;
 }
 
+.tab-content {
+     padding: 20px;
+     background-color: white;
+     border-radius: 0 0 1rem 1rem;
+ }
+
 
 /* -------------------------*/
 /* 2. REIHE */
 /* -------------------------*/
 .row2Div {
-    background-color: white;
-    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
     min-height: 650px;
-    padding-bottom: 20px;
     align-content: center;
+    border: 1px solid #f9f9f9;
+    border-radius: 1rem;
+    box-shadow: .1rem .1rem .1rem rgba(0,0,0,0.02);
 }
 
 .row2Col {
@@ -172,13 +176,11 @@ table, tr, td, th{
 /* 3. REIHE */
 /* -------------------------*/
 .row3Div {
-    background-color: white;
-    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
     min-height: 650px;
-    padding-bottom: 20px;
+    border: 1px solid #f9f9f9;
+    border-radius: 1rem;
+    box-shadow: .1rem .1rem .1rem rgba(0,0,0,0.02);
 }
 
 
@@ -188,8 +190,10 @@ table, tr, td, th{
 .tab_style{
     color: black;
     font-size: large;
-    border-top-left-radius: 3px;
     padding: 0px 24px;
+    border-radius: 1rem 1rem 0 0;
+    border-left: none !important;
+    border-right: none !important;
 }
 
 .tab_style--selected{
@@ -197,8 +201,6 @@ table, tr, td, th{
     font-size: large;
     font-weight: bolder;
     box-shadow: 1px 1px 0px white;
-    border-left: 1px solid lightgrey !important;
-    border-right: 1px solid lightgrey !important;
     border-top: 3px solid #e36209 !important;
 
 }
