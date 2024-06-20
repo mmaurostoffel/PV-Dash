@@ -47,7 +47,7 @@ body {
 /* DROPDOWNS */
 /* -------------------------*/
 .DDtext{
-    color: lightblue;
+    color: black;
     font-weight:bold;
     font-size: medium;
 }
@@ -71,6 +71,7 @@ body {
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
+    min-height: 200px;
 }
 
 .row1DD {
@@ -96,7 +97,7 @@ body {
     align-content: center;
     border: 1px solid #f9f9f9;
     border-radius: 1rem;
-    box-shadow: .1rem .1rem .1rem rgba(0,0,0,0.02);
+    box-shadow: .1rem .1rem .1rem rgba(0,0,0,0.2);
 }
 
 .row2Col {
@@ -163,7 +164,7 @@ table, tr, td, th{
 }
 
 .graphText{
-    color: lightblue;
+    color: black;
     font-weight:bold;
     text-align: center;
     font-size: larger;
@@ -177,7 +178,7 @@ table, tr, td, th{
     padding: 20px;
     border: 1px solid #f9f9f9;
     border-radius: 1rem;
-    box-shadow: .1rem .1rem .1rem rgba(0,0,0,0.02);
+    box-shadow: .1rem .1rem .1rem rgba(0,0,0,0.2);
 }
 
 
