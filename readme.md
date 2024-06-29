@@ -65,7 +65,8 @@ Die Nebenkritikpunkte aus der Bewertung waren die folgenden:
 - Tortendiagramm in dieser Anwendung nicht sinnvoll
 - Achsenbeschriftungen fehlen noch
 
-- Diese wurden alle behoben. Als Hauptkritikpunkte wurden folgende zwei Punkte genannt:
+Diese wurden alle behoben. 
+Als Hauptkritikpunkte wurden folgende zwei Punkte genannt:
 1. Positionierung Visualisierung «Grossverbraucher und Batterie Auslastung»: Die Visualisierung soll bspw. In einen separaten Tab platziert werden, sodass kein Scrolling nötig ist.
 2. Gibt es eine intuitive Lösung wie der finanzielle Erfolg für den Betrachter erkennbar ist?
 
