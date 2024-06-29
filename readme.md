@@ -1,5 +1,6 @@
 # Batteriespeicher Dashboard 
 Autoren: Mauro Stoffel, Marc-Alexander Iten
+GitHub Repository: https://github.com/mmaurostoffel/PV-Dash.git
 ## Codebeschreibung
 ### Verwendete Packages 
 
